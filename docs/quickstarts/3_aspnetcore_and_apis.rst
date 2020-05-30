@@ -12,7 +12,7 @@ the identity token containing the information about the authentication and sessi
 Modifying the client configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Updating the client configuration in IdentityServer is straightforward - we simply need to add the ``api1`` resource to the allowed scopes list.
-In addition we enable support for refresh tokens via the ``EnableOfflineAccess`` property::
+In addition we enable support for refresh tokens via the ``AllowOfflineAccess`` property::
 
     new Client
     {
@@ -71,8 +71,8 @@ Using the access token
 ^^^^^^^^^^^^^^^^^^^^^^
 You can access the tokens in the session using the standard ASP.NET Core extension methods that you can find in the ``Microsoft.AspNetCore.Authentication`` namespace::
 
-var accessToken = await HttpContext.GetTokenAsync("access_token")
-var refreshToken = await HttpContext.GetTokenAsync("refresh_token");
+    var accessToken = await HttpContext.GetTokenAsync("access_token");
+    var refreshToken = await HttpContext.GetTokenAsync("refresh_token");
 
 For accessing the API using the access token, all you need to do is retrieve the token, and set it on your HttpClient::
 
